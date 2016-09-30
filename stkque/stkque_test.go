@@ -85,13 +85,13 @@ func TestPeek(t *testing.T) {
 	}
 }
 
-func TestPopstk(t *testing.T) {
-	stk := New()
+func TestPop(t *testing.T) {
+	slc := New()
 
 	/* Popstking an empty array should throw a non-nil error*/
-	v, err := stk.Popstk()
+	v, err := slc.Popstk()
 	if err == nil || v != nil {
-		t.Errorf("stk.Popstk() == %v, %v, want %v, !%v: Popstking an empty array should throw non-nil error", v, err, nil, nil)
+		t.Errorf("slc.Popstk() == %v, %v, want %v, !%v: Popstking an empty array should throw non-nil error", v, err, nil, nil)
 	}
 
 	/* Push some power of 2 times */
@@ -99,39 +99,23 @@ func TestPopstk(t *testing.T) {
 	for i := 0; i < 128; i++ {
 		vals[i] = i
 	}
-	stk.Push(vals...)
 
-	/* Start Popstking; check return values AND len(stk) */
+	slc.Push(vals...)
+	/* Start Popstking; check return values AND len(slc) */
 	for i := 127; i > -1; i-- {
-		v, err = stk.Popstk()
-		if !(v == i && err == nil && len(stk) == i) {
-			t.Errorf("stk.Popstk() == %d, %v and len(stk) == %d, want %d, %v and %d", v, err, len(stk), i, nil, i)
+		v, err = slc.Popstk()
+		if !(v == i && err == nil && len(slc) == i) {
+			t.Errorf("slc.Popstk() == %d, %v and len(slc) == %d, want %d, %v and %d", v, err, len(slc), i, nil, i)
 			break
 		}
 	}
-}
 
-func TestPopque(t *testing.T) {
-	que := New()
-
-	/* Popqueing an empty array should throw a non-nil error*/
-	v, err := que.Popque()
-	if err == nil || v != nil {
-		t.Errorf("que.Popque() == %v, %v, want %v, !%v: Popqueing an empty array should throw non-nil error", v, err, nil, nil)
-	}
-
-	/* Push some power of 2 times */
-	vals := make([]Element, 128)
-	for i := 0; i < 128; i++ {
-		vals[i] = i
-	}
-	que.Push(vals...)
-
-	/* Start Popqueing; check return values AND len(que) */
+	slc.Push(vals...)
+	/* Start Popqueing; check return values AND len(slc) */
 	for i, j := 0, 127; i < 128; i, j = i + 1, j - 1 {
-		v, err = que.Popque()
-		if !(v == i && err == nil && len(que) == j) {
-			t.Errorf("que.Popque() == %d, %v and len(que) == %d, want %d, %v and %d", v, err, len(que), i, nil, j)
+		v, err = slc.Popque()
+		if !(v == i && err == nil && len(slc) == j) {
+			t.Errorf("slc.Popque() == %d, %v and len(slc) == %d, want %d, %v and %d", v, err, len(slc), i, nil, j)
 			break
 		}
 	}
