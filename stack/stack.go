@@ -1,16 +1,16 @@
 package stack
 
 /*
-  Unfortunately without true generics, I have to allow arbitrary elements into
+  Unfortunately without true generics, I have to allow arbitrary Elements into
   the stack. The alternatives to this are:
-  1) Provide a stack that allows only one type of element (like int) which is
+  1) Provide a stack that allows only one type of Element (like int) which is
      very limiting.
   2) Hand-code stacks for every type: int, rune, byte, string, etc. Well, this
      is exactly the kind of meaningless effort that generics should solve. Also,
      I cannot predict every type that is ever going to come into existence!
 */
-type element interface{}
-type SliceStack []element
+type Element interface{}
+type SliceStack []Element
 
 func New() SliceStack {
 	return SliceStack{}
@@ -24,8 +24,8 @@ func (stk *SliceStack) Cap() int {
 	return cap(*stk)
 }
 
-func (stk *SliceStack) Push(e element) {
-	*stk = append(*stk, e)
+func (stk *SliceStack) Push(e ...Element) {
+	*stk = append(*stk, e...)
 }
 
 type EmptyStack SliceStack
@@ -33,7 +33,7 @@ func (empty EmptyStack) Error() string {
 	return "Cannot Peek() or Pop() on empty stack"
 }
 
-func (stk *SliceStack) Peek() (element, error) {
+func (stk *SliceStack) Peek() (Element, error) {
 	lastindex := len(*stk) - 1
 	if lastindex < 0 {
 		return nil, EmptyStack(*stk)
@@ -55,7 +55,7 @@ func shrink(stk SliceStack, upto int) SliceStack {
 	return stk[:upto]
 }
 
-func (stk *SliceStack) Pop() (element, error) {
+func (stk *SliceStack) Pop() (Element, error) {
 	lastindex := len(*stk) - 1
 	if lastindex < 0 {
 		return nil, EmptyStack(*stk)
