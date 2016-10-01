@@ -1,4 +1,4 @@
-package stkque
+package staque
 
 import (
 	"testing"
@@ -8,9 +8,9 @@ import (
 func TestLen(t *testing.T) {
 	slc := New()
 
-	/* Newly created stkque must have zero length */
+	/* Newly created staque must have zero length */
 	if slc.Len() != 0 {
-		t.Errorf("slc.Len() == %d, want %d: New stkque must be empty", slc.Len(), 0)
+		t.Errorf("slc.Len() == %d, want %d: New staque must be empty", slc.Len(), 0)
 	}
 
 	/* Push a random number of times */

@@ -1,9 +1,9 @@
-package stkque
+package staque
 
 /*
-  Unfortunately without true generics, I have to allow arbitrary Elements into the stkque. The alternatives to this are:
-  1) Provide a stkque that allows only one type of Element (like int) which is very limiting.
-  2) Hand-code stkques for every type: int, rune, byte, string, etc. Well, this is exactly the kind of meaningless effort that generics should solve. Also, I cannot predict every type that is ever going to come into existence!
+  Unfortunately without true generics, I have to allow arbitrary Elements into the staque. The alternatives to this are:
+  1) Provide a staque that allows only one type of Element (like int) which is very limiting.
+  2) Hand-code staques for every type: int, rune, byte, string, etc. Well, this is exactly the kind of meaningless effort that generics should solve. Also, I cannot predict every type that is ever going to come into existence!
 */
 type Element interface{}
 type Slice []Element
@@ -26,7 +26,7 @@ func (stk *Slice) Push(xs ...Element) {
 
 type Empty Slice
 func (empty Empty) Error() string {
-	return "Cannot Peek() or Pop() on empty stkque"
+	return "Cannot Peek() or Pop() on empty staque"
 }
 
 func (stk *Slice) Peekstk() (Element, error) {
