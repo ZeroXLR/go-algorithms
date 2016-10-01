@@ -30,11 +30,11 @@ func (empty Empty) Error() string {
 }
 
 func (stk *Slice) Peekstk() (Element, error) {
-	lastindex := len(*stk) - 1
-	if lastindex < 0 {
+	ilast := len(*stk) - 1
+	if ilast < 0 {
 		return nil, Empty(*stk)
 	}
-	return (*stk)[lastindex], nil
+	return (*stk)[ilast], nil
 }
 
 func (que *Slice) Peekque() (Element, error) {
@@ -44,28 +44,18 @@ func (que *Slice) Peekque() (Element, error) {
 	return (*que)[0], nil
 }
 
-func shrink(slc Slice, fromincl, toexcl int) Slice {
-	/*
-	  As per Dr. Sedgewick's suggestion, we shrink dynamic arrays to half only
-	  when their lens reach a quarter of their caps. This prevents thrashing (
-	  assuming append doubles the cap on resizing)
-	*/
-	if len(slc) <= cap(slc) / 4 {
-		newslc := make(Slice, cap(slc) / 2)
-		copy(newslc, slc[fromincl:toexcl])
-		return newslc[fromincl:toexcl]
-	}
-	return slc[fromincl:toexcl]
-}
-
 func (stk *Slice) Popstk() (Element, error) {
-	lastindex := len(*stk) - 1
-	if lastindex < 0 {
+	ilast := len(*stk) - 1
+	if ilast < 0 {
 		return nil, Empty(*stk)
 	}
 
-	last := (*stk)[lastindex] // save last value; it won't be available after shrink
-	*stk = shrink(*stk, 0, lastindex)
+	last := (*stk)[ilast] // save last value; it won't be available afterwards
+	if ilast < cap(*stk) / 4 {
+		*stk = append(make(Slice, 0, cap(*stk) / 2), (*stk)[:ilast]...)
+	} else {
+		*stk = (*stk)[:ilast]
+	}
 	return last, nil
 }
 
@@ -75,7 +65,11 @@ func (que *Slice) Popque() (Element, error) {
 		return nil, Empty(*que)
 	}
 
-	first := (*que)[0] // save first value; it won't be available after shrink
-	*que = shrink(*que, 1, len)
+	first := (*que)[0] // save first value; it won't be available afterwards
+	if len > cap(*que) / 4 {
+		*que = (*que)[1:]
+	} else {
+		*que = append(make(Slice, 0, cap(*que) / 2), (*que)[1:]...)
+	}
 	return first, nil
 }
