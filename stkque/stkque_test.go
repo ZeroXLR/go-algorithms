@@ -56,32 +56,17 @@ func TestPeek(t *testing.T) {
 	}
 
 	/* Push various values and check both Peeks */
-	slc.Push(byte(42))
-	v, err = slc.Peekstk()
-	if !(v == byte(42) && err == nil) {
-		t.Errorf("slc.Peekstk() == %d, %v want %d, %v", v, err, byte(42), nil)
-	}
-	v, err = slc.Peekque()
-	if !(v == byte(42) && err == nil) {
-		t.Errorf("slc.Peekque() == %d, %v want %d, %v", v, err, byte(42), nil)
-	}
-	slc.Push("gopher")
-	v, err = slc.Peekstk()
-	if !(v == "gopher" && err == nil) {
-		t.Errorf("slc.Peekstk() == %s, %v want %s, %v", v, err, "gopher", nil)
-	}
-	v, err = slc.Peekque()
-	if !(v == byte(42) && err == nil) {
-		t.Errorf("slc.Peekque() == %d, %v want %d, %v", v, err, byte(42), nil)
-	}
-	slc.Push(false)
-	v, err = slc.Peekstk()
-	if !(v == false && err == nil) {
-		t.Errorf("slc.Peekstk() == %t, %v want %t, %v", v, err, true, nil)
-	}
-	v, err = slc.Peekque()
-	if !(v == byte(42) && err == nil) {
-		t.Errorf("slc.Peekque() == %d, %v want %d, %v", v, err, byte(42), nil)
+	vals := [4]Element{byte(42), '界', "gopher", false}
+	for _, val := range vals {
+		slc.Push(val)
+		v, err = slc.Peekstk()
+		if !(v == val && err == nil) {
+			t.Errorf("slc.Peekstk() == %d, %v want %d, %v", v, err, val, nil)
+		}
+		v, err = slc.Peekque()
+		if !(v == vals[0] && err == nil) {
+			t.Errorf("slc.Peekque() == %d, %v want %d, %v", v, err, vals[0], nil)
+		}
 	}
 }
 
