@@ -5,23 +5,6 @@ import (
 	"math/rand"
 )
 
-func TestLen(t *testing.T) {
-	slc := New()
-
-	/* Newly created staque must have zero length */
-	if slc.Len() != 0 {
-		t.Errorf("slc.Len() == %d, want %d: New staque must be empty", slc.Len(), 0)
-	}
-
-	/* Push a random number of times */
-	randvals := make([]Element, rand.Intn(100))
-	slc.Push(randvals...)
-	/* Length must equal number of times pushed */
-	if len, checklen := slc.Len(), len(randvals); len != checklen {
-		t.Errorf("slc.Len() == %d, want %d", len, checklen)
-	}
-}
-
 func TestPush(t *testing.T) {
 	slc := New()
 

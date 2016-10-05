@@ -12,34 +12,26 @@ func New() Slice {
 	return Slice{}
 }
 
-func (stk *Slice) Len() int {
-	return len(*stk)
-}
-
-func (stk *Slice) Cap() int {
-	return cap(*stk)
-}
-
 func (stk *Slice) Push(xs ...Element) {
 	*stk = append(*stk, xs...)
 }
 
-type Empty Slice
+type Empty string
 func (empty Empty) Error() string {
-	return "Cannot Peek() or Pop() on empty staque"
+	return string(empty)
 }
 
 func (stk *Slice) Peekstk() (Element, error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
-		return nil, Empty(*stk)
+		return nil, Empty("Cannot Peek() on empty staque")
 	}
 	return (*stk)[ilast], nil
 }
 
 func (que *Slice) Peekque() (Element, error) {
 	if len(*que) == 0 {
-		return nil, Empty(*que)
+		return nil, Empty("Cannot Peek() on empty staque")
 	}
 	return (*que)[0], nil
 }
@@ -47,7 +39,7 @@ func (que *Slice) Peekque() (Element, error) {
 func (stk *Slice) Popstk() (Element, error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
-		return nil, Empty(*stk)
+		return nil, Empty("Cannot Pop() on empty staque")
 	}
 
 	last := (*stk)[ilast] // save last value; it won't be available afterwards
@@ -62,7 +54,7 @@ func (stk *Slice) Popstk() (Element, error) {
 func (que *Slice) Popque() (Element, error) {
 	len := len(*que)
 	if len == 0 {
-		return nil, Empty(*que)
+		return nil, Empty("Cannot Pop() on empty staque")
 	}
 
 	first := (*que)[0] // save first value; it won't be available afterwards
