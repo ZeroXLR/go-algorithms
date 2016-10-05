@@ -45,23 +45,28 @@ type UFbyrank struct {
 	rank []byte
 }
 
-func (uf *UFbyrank) Union(p0, p1 int) error {
+func (uf *UFbyrank) Union(p0, p1 int) (err error) {
 	root0, err := uf.Find(p0)
-	if err == nil {
-		root1, err := uf.Find(p1)
-		if err == nil && root0 != root1 {
-			if w0, w1 := uf.rank[root0], uf.rank[root1]; w1 > w0 {
-				uf.parent[root0] = root1
-			} else if w0 > w1 {
-				uf.parent[root1] = root0
-			} else {
-				uf.parent[root1] = root0
-				uf.rank[root0]++
-			}
-			uf.setcount--
-		}
+	if err != nil {
+		return
 	}
-	return err
+	root1, err := uf.Find(p1)
+	if err != nil {
+		return
+	}
+	if root0 == root1 {
+		return
+	}
+	if w0, w1 := uf.rank[root0], uf.rank[root1]; w1 > w0 {
+		uf.parent[root0] = root1
+	} else if w0 > w1 {
+		uf.parent[root1] = root0
+	} else {
+		uf.parent[root1] = root0
+		uf.rank[root0]++
+	}
+	uf.setcount--
+	return
 }
 
 type UFbysize struct {
@@ -69,22 +74,27 @@ type UFbysize struct {
 	size []int
 }
 
-func (uf *UFbysize) Union(p0, p1 int) error {
+func (uf *UFbysize) Union(p0, p1 int) (err error) {
 	root0, err := uf.Find(p0)
-	if err == nil {
-		root1, err := uf.Find(p1)
-		if err == nil && root0 != root1 {
-			if w0, w1 := uf.size[root0], uf.size[root1]; w1 > w0 {
-				uf.parent[root0] = root1
-				uf.size[root1] += w0
-			} else {
-				uf.parent[root1] = root0
-				uf.size[root0] += w1
-			}
-			uf.setcount--
-		}
+	if err != nil {
+		return
 	}
-	return err
+	root1, err := uf.Find(p1)
+	if err != nil {
+		return
+	}
+	if root0 == root1 {
+		return
+	}
+	if w0, w1 := uf.size[root0], uf.size[root1]; w1 > w0 {
+		uf.parent[root0] = root1
+		uf.size[root1] += w0
+	} else {
+		uf.parent[root1] = root0
+		uf.size[root0] += w1
+	}
+	uf.setcount--
+	return
 }
 
 func Byrank(n int) *UFbyrank {
