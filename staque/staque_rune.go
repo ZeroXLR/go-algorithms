@@ -1,16 +1,16 @@
 package staque
 
-type RuneSlice []byte
+type RuneSlice []rune
 
 func Rune() RuneSlice {
 	return RuneSlice{}
 }
 
-func (stk *RuneSlice) Push(xs ...byte) {
+func (stk *RuneSlice) Push(xs ...rune) {
 	*stk = append(*stk, xs...)
 }
 
-func (stk *RuneSlice) Peekstk() (byte, error) {
+func (stk *RuneSlice) Peekstk() (rune, error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return 0, Empty("Cannot Peek() on empty staque")
@@ -18,14 +18,14 @@ func (stk *RuneSlice) Peekstk() (byte, error) {
 	return (*stk)[ilast], nil
 }
 
-func (que *RuneSlice) Peekque() (byte, error) {
+func (que *RuneSlice) Peekque() (rune, error) {
 	if len(*que) == 0 {
 		return 0, Empty("Cannot Peek() on empty staque")
 	}
 	return (*que)[0], nil
 }
 
-func (stk *RuneSlice) Popstk() (byte, error) {
+func (stk *RuneSlice) Popstk() (rune, error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return 0, Empty("Cannot Pop() on empty staque")
@@ -40,7 +40,7 @@ func (stk *RuneSlice) Popstk() (byte, error) {
 	return last, nil
 }
 
-func (que *RuneSlice) Popque() (byte, error) {
+func (que *RuneSlice) Popque() (rune, error) {
 	len := len(*que)
 	if len == 0 {
 		return 0, Empty("Cannot Pop() on empty staque")
