@@ -9,7 +9,7 @@ func TestPush(t *testing.T) {
 	slc := New()
 
 	/* Push a random number of times */
-	randvals := make([]Element, rand.Intn(100))
+	randvals := make([]any, rand.Intn(100))
 	for i := 0; i < len(randvals); i++ {
 		randvals[i] = float64(i)
 	}
@@ -39,7 +39,7 @@ func TestPeek(t *testing.T) {
 	}
 
 	/* Push various values and check both Peeks */
-	vals := [4]Element{byte(42), '界', "gopher", false}
+	vals := [4]any{byte(42), '界', "gopher", false}
 	for _, val := range vals {
 		slc.Push(val)
 		v, err = slc.Peekstk()
@@ -63,7 +63,7 @@ func TestPop(t *testing.T) {
 	}
 
 	/* Push some power of 2 times */
-	vals := make([]Element, 128)
+	vals := make([]any, 128)
 	for i := 0; i < 128; i++ {
 		vals[i] = i
 	}
@@ -89,17 +89,32 @@ func TestPop(t *testing.T) {
 	}
 }
 
-func BenchmarkPushOneByOne(b *testing.B) {
+func BenchmarkPush1By1(b *testing.B) {
 	slc := New()
 	for i := 0; i < b.N; i++ {
 		slc.Push(i)
 	}
 }
 
-func BenchmarkPushSimultaneously(b *testing.B) {
-	slc, vals := New(), make([]Element, b.N)
+func BenchmarkPushAll(b *testing.B) {
+	slc, vals := New(), make([]any, b.N)
 	for i := 0; i < b.N; i++ {
 		vals[i] = i
+	}
+	slc.Push(vals...)
+}
+
+func BenchmarkPush1By1String(b *testing.B) {
+	slc := String()
+	for i := 0; i < b.N; i++ {
+		slc.Push("Meow Meow Meow Meow")
+	}
+}
+
+func BenchmarkPushAllString(b *testing.B) {
+	slc, vals := String(), make([]string, b.N)
+	for i := 0; i < b.N; i++ {
+		vals[i] = "Meow Meow Meow Meow"
 	}
 	slc.Push(vals...)
 }
