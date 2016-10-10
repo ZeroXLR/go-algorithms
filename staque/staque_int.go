@@ -1,16 +1,16 @@
 package staque
 
-type IntSlice []int
+type IntStaque []int
 
-func Int() IntSlice {
-	return IntSlice{}
+func Int() IntStaque {
+	return IntStaque{}
 }
 
-func (stk *IntSlice) Push(xs ...int) {
+func (stk *IntStaque) Push(xs ...int) {
 	*stk = append(*stk, xs...)
 }
 
-func (stk *IntSlice) Peekstk() (int, error) {
+func (stk *IntStaque) Peekstk() (int, error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return 0, Empty("Cannot Peek() on empty staque")
@@ -18,14 +18,14 @@ func (stk *IntSlice) Peekstk() (int, error) {
 	return (*stk)[ilast], nil
 }
 
-func (que *IntSlice) Peekque() (int, error) {
+func (que *IntStaque) Peekque() (int, error) {
 	if len(*que) == 0 {
 		return 0, Empty("Cannot Peek() on empty staque")
 	}
 	return (*que)[0], nil
 }
 
-func (stk *IntSlice) Popstk() (int, error) {
+func (stk *IntStaque) Popstk() (int, error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return 0, Empty("Cannot Pop() on empty staque")
@@ -33,14 +33,14 @@ func (stk *IntSlice) Popstk() (int, error) {
 
 	last := (*stk)[ilast] // save last value; it won't be available afterwards
 	if ilast < cap(*stk) / 4 {
-		*stk = append(make(IntSlice, 0, cap(*stk) / 2), (*stk)[:ilast]...)
+		*stk = append(make(IntStaque, 0, cap(*stk) / 2), (*stk)[:ilast]...)
 	} else {
 		*stk = (*stk)[:ilast]
 	}
 	return last, nil
 }
 
-func (que *IntSlice) Popque() (int, error) {
+func (que *IntStaque) Popque() (int, error) {
 	len := len(*que)
 	if len == 0 {
 		return 0, Empty("Cannot Pop() on empty staque")
@@ -50,7 +50,7 @@ func (que *IntSlice) Popque() (int, error) {
 	if len > cap(*que) / 4 {
 		*que = (*que)[1:]
 	} else {
-		*que = append(make(IntSlice, 0, cap(*que) / 2), (*que)[1:]...)
+		*que = append(make(IntStaque, 0, cap(*que) / 2), (*que)[1:]...)
 	}
 	return first, nil
 }

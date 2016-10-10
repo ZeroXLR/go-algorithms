@@ -6,13 +6,13 @@ package staque
   2) Hand-code staques for every type: int, rune, byte, string, etc. Well, this is exactly the kind of meaningless effort that generics should solve. Also, I cannot predict every type that is ever going to come into existence!
 */
 type any interface{}
-type AnySlice []any
+type AnyStaque []any
 
-func New() AnySlice {
-	return AnySlice{}
+func New() AnyStaque {
+	return AnyStaque{}
 }
 
-func (stk *AnySlice) Push(xs ...any) {
+func (stk *AnyStaque) Push(xs ...any) {
 	*stk = append(*stk, xs...)
 }
 
@@ -21,7 +21,7 @@ func (empty Empty) Error() string {
 	return string(empty)
 }
 
-func (stk *AnySlice) Peekstk() (any, error) {
+func (stk *AnyStaque) Peekstk() (any, error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return nil, Empty("Cannot Peek() on empty staque")
@@ -29,14 +29,14 @@ func (stk *AnySlice) Peekstk() (any, error) {
 	return (*stk)[ilast], nil
 }
 
-func (que *AnySlice) Peekque() (any, error) {
+func (que *AnyStaque) Peekque() (any, error) {
 	if len(*que) == 0 {
 		return nil, Empty("Cannot Peek() on empty staque")
 	}
 	return (*que)[0], nil
 }
 
-func (stk *AnySlice) Popstk() (any, error) {
+func (stk *AnyStaque) Popstk() (any, error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return nil, Empty("Cannot Pop() on empty staque")
@@ -44,14 +44,14 @@ func (stk *AnySlice) Popstk() (any, error) {
 
 	last := (*stk)[ilast] // save last value; it won't be available afterwards
 	if ilast < cap(*stk) / 4 {
-		*stk = append(make(AnySlice, 0, cap(*stk) / 2), (*stk)[:ilast]...)
+		*stk = append(make(AnyStaque, 0, cap(*stk) / 2), (*stk)[:ilast]...)
 	} else {
 		*stk = (*stk)[:ilast]
 	}
 	return last, nil
 }
 
-func (que *AnySlice) Popque() (any, error) {
+func (que *AnyStaque) Popque() (any, error) {
 	len := len(*que)
 	if len == 0 {
 		return nil, Empty("Cannot Pop() on empty staque")
@@ -61,7 +61,7 @@ func (que *AnySlice) Popque() (any, error) {
 	if len > cap(*que) / 4 {
 		*que = (*que)[1:]
 	} else {
-		*que = append(make(AnySlice, 0, cap(*que) / 2), (*que)[1:]...)
+		*que = append(make(AnyStaque, 0, cap(*que) / 2), (*que)[1:]...)
 	}
 	return first, nil
 }
