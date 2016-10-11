@@ -6,10 +6,10 @@ import (
 )
 
 func TestPush(t *testing.T) {
-	slc := New()
+	slc := NewGeneric()
 
 	/* Push a random number of times */
-	randvals := make([]any, rand.Intn(100))
+	randvals := make([]Generic, rand.Intn(100))
 	for i := 0; i < len(randvals); i++ {
 		randvals[i] = float64(i)
 	}
@@ -24,7 +24,7 @@ func TestPush(t *testing.T) {
 }
 
 func TestPeek(t *testing.T) {
- 	slc := New()
+ 	slc := NewGeneric()
 
 	/* Peekstking an empty array should throw a non-nil error*/
 	v, err := slc.Peekstk()
@@ -39,7 +39,7 @@ func TestPeek(t *testing.T) {
 	}
 
 	/* Push various values and check both Peeks */
-	vals := [4]any{byte(42), '界', "gopher", false}
+	vals := [4]Generic{byte(42), '界', "gopher", false}
 	for _, val := range vals {
 		slc.Push(val)
 		v, err = slc.Peekstk()
@@ -54,7 +54,7 @@ func TestPeek(t *testing.T) {
 }
 
 func TestPop(t *testing.T) {
-	slc := New()
+	slc := NewGeneric()
 
 	/* Popstking an empty array should throw a non-nil error*/
 	v, err := slc.Popstk()
@@ -63,7 +63,7 @@ func TestPop(t *testing.T) {
 	}
 
 	/* Push some power of 2 times */
-	vals := make([]any, 128)
+	vals := make([]Generic, 128)
 	for i := 0; i < 128; i++ {
 		vals[i] = i
 	}
@@ -90,14 +90,14 @@ func TestPop(t *testing.T) {
 }
 
 func BenchmarkPush1By1(b *testing.B) {
-	slc := New()
+	slc := NewGeneric()
 	for i := 0; i < b.N; i++ {
 		slc.Push(i)
 	}
 }
 
 func BenchmarkPushAll(b *testing.B) {
-	slc, vals := New(), make([]any, b.N)
+	slc, vals := NewGeneric(), make([]Generic, b.N)
 	for i := 0; i < b.N; i++ {
 		vals[i] = i
 	}
@@ -105,16 +105,31 @@ func BenchmarkPushAll(b *testing.B) {
 }
 
 func BenchmarkPush1By1String(b *testing.B) {
-	slc := String()
+	slc := NewString()
 	for i := 0; i < b.N; i++ {
 		slc.Push("Meow Meow Meow Meow")
 	}
 }
 
 func BenchmarkPushAllString(b *testing.B) {
-	slc, vals := String(), make([]string, b.N)
+	slc, vals := NewString(), make([]string, b.N)
 	for i := 0; i < b.N; i++ {
 		vals[i] = "Meow Meow Meow Meow"
+	}
+	slc.Push(vals...)
+}
+
+func BenchmarkPush1By1Int(b *testing.B) {
+	slc := NewInt()
+	for i := 0; i < b.N; i++ {
+		slc.Push(i)
+	}
+}
+
+func BenchmarkPushAllInt(b *testing.B) {
+	slc, vals := NewInt(), make([]int, b.N)
+	for i := 0; i < b.N; i++ {
+		vals[i] = i
 	}
 	slc.Push(vals...)
 }
