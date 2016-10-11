@@ -15,22 +15,22 @@ func (staque *GenericStaque) Push(xs ...Generic) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *GenericStaque) Peekstk() (last Generic, err error) {
+func (stk *GenericStaque) Peekstk() (last Generic, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *GenericStaque) Peekque() (first Generic, err error) {
+func (que *GenericStaque) Peekque() (first Generic, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *GenericStaque) Popstk() (last Generic, err error) {
+func (stk *GenericStaque) Popstk() (last Generic, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -42,10 +42,10 @@ func (stk *GenericStaque) Popstk() (last Generic, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *GenericStaque) Popque() (first Generic, err error) {
+func (que *GenericStaque) Popque() (first Generic, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -57,5 +57,5 @@ func (que *GenericStaque) Popque() (first Generic, err error) {
 	} else {
 		*que = append(make([]Generic, 0, cap(*que) / 2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }

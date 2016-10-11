@@ -14,22 +14,22 @@ func (staque *BoolStaque) Push(xs ...bool) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *BoolStaque) Peekstk() (last bool, err error) {
+func (stk *BoolStaque) Peekstk() (last bool, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *BoolStaque) Peekque() (first bool, err error) {
+func (que *BoolStaque) Peekque() (first bool, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *BoolStaque) Popstk() (last bool, err error) {
+func (stk *BoolStaque) Popstk() (last bool, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -41,10 +41,10 @@ func (stk *BoolStaque) Popstk() (last bool, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *BoolStaque) Popque() (first bool, err error) {
+func (que *BoolStaque) Popque() (first bool, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -56,7 +56,7 @@ func (que *BoolStaque) Popque() (first bool, err error) {
 	} else {
 		*que = append(make([]bool, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type ByteStaque []byte
@@ -69,22 +69,22 @@ func (staque *ByteStaque) Push(xs ...byte) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *ByteStaque) Peekstk() (last byte, err error) {
+func (stk *ByteStaque) Peekstk() (last byte, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *ByteStaque) Peekque() (first byte, err error) {
+func (que *ByteStaque) Peekque() (first byte, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *ByteStaque) Popstk() (last byte, err error) {
+func (stk *ByteStaque) Popstk() (last byte, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -96,10 +96,10 @@ func (stk *ByteStaque) Popstk() (last byte, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *ByteStaque) Popque() (first byte, err error) {
+func (que *ByteStaque) Popque() (first byte, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -111,7 +111,7 @@ func (que *ByteStaque) Popque() (first byte, err error) {
 	} else {
 		*que = append(make([]byte, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Complex128Staque []complex128
@@ -124,22 +124,22 @@ func (staque *Complex128Staque) Push(xs ...complex128) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Complex128Staque) Peekstk() (last complex128, err error) {
+func (stk *Complex128Staque) Peekstk() (last complex128, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Complex128Staque) Peekque() (first complex128, err error) {
+func (que *Complex128Staque) Peekque() (first complex128, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Complex128Staque) Popstk() (last complex128, err error) {
+func (stk *Complex128Staque) Popstk() (last complex128, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -151,10 +151,10 @@ func (stk *Complex128Staque) Popstk() (last complex128, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Complex128Staque) Popque() (first complex128, err error) {
+func (que *Complex128Staque) Popque() (first complex128, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -166,7 +166,7 @@ func (que *Complex128Staque) Popque() (first complex128, err error) {
 	} else {
 		*que = append(make([]complex128, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Complex64Staque []complex64
@@ -179,22 +179,22 @@ func (staque *Complex64Staque) Push(xs ...complex64) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Complex64Staque) Peekstk() (last complex64, err error) {
+func (stk *Complex64Staque) Peekstk() (last complex64, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Complex64Staque) Peekque() (first complex64, err error) {
+func (que *Complex64Staque) Peekque() (first complex64, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Complex64Staque) Popstk() (last complex64, err error) {
+func (stk *Complex64Staque) Popstk() (last complex64, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -206,10 +206,10 @@ func (stk *Complex64Staque) Popstk() (last complex64, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Complex64Staque) Popque() (first complex64, err error) {
+func (que *Complex64Staque) Popque() (first complex64, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -221,7 +221,7 @@ func (que *Complex64Staque) Popque() (first complex64, err error) {
 	} else {
 		*que = append(make([]complex64, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type ErrorStaque []error
@@ -234,22 +234,22 @@ func (staque *ErrorStaque) Push(xs ...error) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *ErrorStaque) Peekstk() (last error, err error) {
+func (stk *ErrorStaque) Peekstk() (last error, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *ErrorStaque) Peekque() (first error, err error) {
+func (que *ErrorStaque) Peekque() (first error, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *ErrorStaque) Popstk() (last error, err error) {
+func (stk *ErrorStaque) Popstk() (last error, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -261,10 +261,10 @@ func (stk *ErrorStaque) Popstk() (last error, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *ErrorStaque) Popque() (first error, err error) {
+func (que *ErrorStaque) Popque() (first error, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -276,7 +276,7 @@ func (que *ErrorStaque) Popque() (first error, err error) {
 	} else {
 		*que = append(make([]error, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Float32Staque []float32
@@ -289,22 +289,22 @@ func (staque *Float32Staque) Push(xs ...float32) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Float32Staque) Peekstk() (last float32, err error) {
+func (stk *Float32Staque) Peekstk() (last float32, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Float32Staque) Peekque() (first float32, err error) {
+func (que *Float32Staque) Peekque() (first float32, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Float32Staque) Popstk() (last float32, err error) {
+func (stk *Float32Staque) Popstk() (last float32, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -316,10 +316,10 @@ func (stk *Float32Staque) Popstk() (last float32, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Float32Staque) Popque() (first float32, err error) {
+func (que *Float32Staque) Popque() (first float32, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -331,7 +331,7 @@ func (que *Float32Staque) Popque() (first float32, err error) {
 	} else {
 		*que = append(make([]float32, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Float64Staque []float64
@@ -344,22 +344,22 @@ func (staque *Float64Staque) Push(xs ...float64) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Float64Staque) Peekstk() (last float64, err error) {
+func (stk *Float64Staque) Peekstk() (last float64, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Float64Staque) Peekque() (first float64, err error) {
+func (que *Float64Staque) Peekque() (first float64, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Float64Staque) Popstk() (last float64, err error) {
+func (stk *Float64Staque) Popstk() (last float64, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -371,10 +371,10 @@ func (stk *Float64Staque) Popstk() (last float64, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Float64Staque) Popque() (first float64, err error) {
+func (que *Float64Staque) Popque() (first float64, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -386,7 +386,7 @@ func (que *Float64Staque) Popque() (first float64, err error) {
 	} else {
 		*que = append(make([]float64, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type IntStaque []int
@@ -399,22 +399,22 @@ func (staque *IntStaque) Push(xs ...int) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *IntStaque) Peekstk() (last int, err error) {
+func (stk *IntStaque) Peekstk() (last int, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *IntStaque) Peekque() (first int, err error) {
+func (que *IntStaque) Peekque() (first int, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *IntStaque) Popstk() (last int, err error) {
+func (stk *IntStaque) Popstk() (last int, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -426,10 +426,10 @@ func (stk *IntStaque) Popstk() (last int, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *IntStaque) Popque() (first int, err error) {
+func (que *IntStaque) Popque() (first int, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -441,7 +441,7 @@ func (que *IntStaque) Popque() (first int, err error) {
 	} else {
 		*que = append(make([]int, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Int16Staque []int16
@@ -454,22 +454,22 @@ func (staque *Int16Staque) Push(xs ...int16) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Int16Staque) Peekstk() (last int16, err error) {
+func (stk *Int16Staque) Peekstk() (last int16, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Int16Staque) Peekque() (first int16, err error) {
+func (que *Int16Staque) Peekque() (first int16, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Int16Staque) Popstk() (last int16, err error) {
+func (stk *Int16Staque) Popstk() (last int16, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -481,10 +481,10 @@ func (stk *Int16Staque) Popstk() (last int16, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Int16Staque) Popque() (first int16, err error) {
+func (que *Int16Staque) Popque() (first int16, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -496,7 +496,7 @@ func (que *Int16Staque) Popque() (first int16, err error) {
 	} else {
 		*que = append(make([]int16, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Int32Staque []int32
@@ -509,22 +509,22 @@ func (staque *Int32Staque) Push(xs ...int32) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Int32Staque) Peekstk() (last int32, err error) {
+func (stk *Int32Staque) Peekstk() (last int32, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Int32Staque) Peekque() (first int32, err error) {
+func (que *Int32Staque) Peekque() (first int32, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Int32Staque) Popstk() (last int32, err error) {
+func (stk *Int32Staque) Popstk() (last int32, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -536,10 +536,10 @@ func (stk *Int32Staque) Popstk() (last int32, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Int32Staque) Popque() (first int32, err error) {
+func (que *Int32Staque) Popque() (first int32, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -551,7 +551,7 @@ func (que *Int32Staque) Popque() (first int32, err error) {
 	} else {
 		*que = append(make([]int32, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Int64Staque []int64
@@ -564,22 +564,22 @@ func (staque *Int64Staque) Push(xs ...int64) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Int64Staque) Peekstk() (last int64, err error) {
+func (stk *Int64Staque) Peekstk() (last int64, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Int64Staque) Peekque() (first int64, err error) {
+func (que *Int64Staque) Peekque() (first int64, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Int64Staque) Popstk() (last int64, err error) {
+func (stk *Int64Staque) Popstk() (last int64, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -591,10 +591,10 @@ func (stk *Int64Staque) Popstk() (last int64, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Int64Staque) Popque() (first int64, err error) {
+func (que *Int64Staque) Popque() (first int64, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -606,7 +606,7 @@ func (que *Int64Staque) Popque() (first int64, err error) {
 	} else {
 		*que = append(make([]int64, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Int8Staque []int8
@@ -619,22 +619,22 @@ func (staque *Int8Staque) Push(xs ...int8) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Int8Staque) Peekstk() (last int8, err error) {
+func (stk *Int8Staque) Peekstk() (last int8, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Int8Staque) Peekque() (first int8, err error) {
+func (que *Int8Staque) Peekque() (first int8, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Int8Staque) Popstk() (last int8, err error) {
+func (stk *Int8Staque) Popstk() (last int8, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -646,10 +646,10 @@ func (stk *Int8Staque) Popstk() (last int8, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Int8Staque) Popque() (first int8, err error) {
+func (que *Int8Staque) Popque() (first int8, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -661,7 +661,7 @@ func (que *Int8Staque) Popque() (first int8, err error) {
 	} else {
 		*que = append(make([]int8, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type RuneStaque []rune
@@ -674,22 +674,22 @@ func (staque *RuneStaque) Push(xs ...rune) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *RuneStaque) Peekstk() (last rune, err error) {
+func (stk *RuneStaque) Peekstk() (last rune, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *RuneStaque) Peekque() (first rune, err error) {
+func (que *RuneStaque) Peekque() (first rune, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *RuneStaque) Popstk() (last rune, err error) {
+func (stk *RuneStaque) Popstk() (last rune, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -701,10 +701,10 @@ func (stk *RuneStaque) Popstk() (last rune, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *RuneStaque) Popque() (first rune, err error) {
+func (que *RuneStaque) Popque() (first rune, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -716,7 +716,7 @@ func (que *RuneStaque) Popque() (first rune, err error) {
 	} else {
 		*que = append(make([]rune, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type StringStaque []string
@@ -729,22 +729,22 @@ func (staque *StringStaque) Push(xs ...string) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *StringStaque) Peekstk() (last string, err error) {
+func (stk *StringStaque) Peekstk() (last string, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *StringStaque) Peekque() (first string, err error) {
+func (que *StringStaque) Peekque() (first string, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *StringStaque) Popstk() (last string, err error) {
+func (stk *StringStaque) Popstk() (last string, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -756,10 +756,10 @@ func (stk *StringStaque) Popstk() (last string, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *StringStaque) Popque() (first string, err error) {
+func (que *StringStaque) Popque() (first string, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -771,7 +771,7 @@ func (que *StringStaque) Popque() (first string, err error) {
 	} else {
 		*que = append(make([]string, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type UintStaque []uint
@@ -784,22 +784,22 @@ func (staque *UintStaque) Push(xs ...uint) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *UintStaque) Peekstk() (last uint, err error) {
+func (stk *UintStaque) Peekstk() (last uint, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *UintStaque) Peekque() (first uint, err error) {
+func (que *UintStaque) Peekque() (first uint, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *UintStaque) Popstk() (last uint, err error) {
+func (stk *UintStaque) Popstk() (last uint, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -811,10 +811,10 @@ func (stk *UintStaque) Popstk() (last uint, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *UintStaque) Popque() (first uint, err error) {
+func (que *UintStaque) Popque() (first uint, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -826,7 +826,7 @@ func (que *UintStaque) Popque() (first uint, err error) {
 	} else {
 		*que = append(make([]uint, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Uint16Staque []uint16
@@ -839,22 +839,22 @@ func (staque *Uint16Staque) Push(xs ...uint16) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Uint16Staque) Peekstk() (last uint16, err error) {
+func (stk *Uint16Staque) Peekstk() (last uint16, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Uint16Staque) Peekque() (first uint16, err error) {
+func (que *Uint16Staque) Peekque() (first uint16, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Uint16Staque) Popstk() (last uint16, err error) {
+func (stk *Uint16Staque) Popstk() (last uint16, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -866,10 +866,10 @@ func (stk *Uint16Staque) Popstk() (last uint16, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Uint16Staque) Popque() (first uint16, err error) {
+func (que *Uint16Staque) Popque() (first uint16, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -881,7 +881,7 @@ func (que *Uint16Staque) Popque() (first uint16, err error) {
 	} else {
 		*que = append(make([]uint16, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Uint32Staque []uint32
@@ -894,22 +894,22 @@ func (staque *Uint32Staque) Push(xs ...uint32) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Uint32Staque) Peekstk() (last uint32, err error) {
+func (stk *Uint32Staque) Peekstk() (last uint32, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Uint32Staque) Peekque() (first uint32, err error) {
+func (que *Uint32Staque) Peekque() (first uint32, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Uint32Staque) Popstk() (last uint32, err error) {
+func (stk *Uint32Staque) Popstk() (last uint32, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -921,10 +921,10 @@ func (stk *Uint32Staque) Popstk() (last uint32, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Uint32Staque) Popque() (first uint32, err error) {
+func (que *Uint32Staque) Popque() (first uint32, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -936,7 +936,7 @@ func (que *Uint32Staque) Popque() (first uint32, err error) {
 	} else {
 		*que = append(make([]uint32, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Uint64Staque []uint64
@@ -949,22 +949,22 @@ func (staque *Uint64Staque) Push(xs ...uint64) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Uint64Staque) Peekstk() (last uint64, err error) {
+func (stk *Uint64Staque) Peekstk() (last uint64, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Uint64Staque) Peekque() (first uint64, err error) {
+func (que *Uint64Staque) Peekque() (first uint64, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Uint64Staque) Popstk() (last uint64, err error) {
+func (stk *Uint64Staque) Popstk() (last uint64, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -976,10 +976,10 @@ func (stk *Uint64Staque) Popstk() (last uint64, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Uint64Staque) Popque() (first uint64, err error) {
+func (que *Uint64Staque) Popque() (first uint64, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -991,7 +991,7 @@ func (que *Uint64Staque) Popque() (first uint64, err error) {
 	} else {
 		*que = append(make([]uint64, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type Uint8Staque []uint8
@@ -1004,22 +1004,22 @@ func (staque *Uint8Staque) Push(xs ...uint8) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *Uint8Staque) Peekstk() (last uint8, err error) {
+func (stk *Uint8Staque) Peekstk() (last uint8, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *Uint8Staque) Peekque() (first uint8, err error) {
+func (que *Uint8Staque) Peekque() (first uint8, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *Uint8Staque) Popstk() (last uint8, err error) {
+func (stk *Uint8Staque) Popstk() (last uint8, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -1031,10 +1031,10 @@ func (stk *Uint8Staque) Popstk() (last uint8, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *Uint8Staque) Popque() (first uint8, err error) {
+func (que *Uint8Staque) Popque() (first uint8, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -1046,7 +1046,7 @@ func (que *Uint8Staque) Popque() (first uint8, err error) {
 	} else {
 		*que = append(make([]uint8, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
 
 type UintptrStaque []uintptr
@@ -1059,22 +1059,22 @@ func (staque *UintptrStaque) Push(xs ...uintptr) {
 	*staque = append(*staque, xs...)
 }
 
-func (stk *UintptrStaque) Peekstk() (last uintptr, err error) {
+func (stk *UintptrStaque) Peekstk() (last uintptr, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Peek() on empty staque")
 	}
-	return (*stk)[ilast], err
+	return (*stk)[ilast], nil
 }
 
-func (que *UintptrStaque) Peekque() (first uintptr, err error) {
+func (que *UintptrStaque) Peekque() (first uintptr, isempty error) {
 	if len(*que) == 0 {
 		return first, Empty("Cannot Peek() on empty staque")
 	}
-	return (*que)[0], err
+	return (*que)[0], nil
 }
 
-func (stk *UintptrStaque) Popstk() (last uintptr, err error) {
+func (stk *UintptrStaque) Popstk() (last uintptr, isempty error) {
 	ilast := len(*stk) - 1
 	if ilast < 0 {
 		return last, Empty("Cannot Pop() on empty staque")
@@ -1086,10 +1086,10 @@ func (stk *UintptrStaque) Popstk() (last uintptr, err error) {
 	} else {
 		*stk = (*stk)[:ilast]
 	}
-	return last, err
+	return last, nil
 }
 
-func (que *UintptrStaque) Popque() (first uintptr, err error) {
+func (que *UintptrStaque) Popque() (first uintptr, isempty error) {
 	len := len(*que)
 	if len == 0 {
 		return first, Empty("Cannot Pop() on empty staque")
@@ -1101,5 +1101,5 @@ func (que *UintptrStaque) Popque() (first uintptr, err error) {
 	} else {
 		*que = append(make([]uintptr, 0, cap(*que)/2), (*que)[1:]...)
 	}
-	return first, err
+	return first, nil
 }
