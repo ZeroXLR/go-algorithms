@@ -1,16 +1,20 @@
 # Description
 
-This library is a collection of some basic data structures and algorithms in [go](https://golang.org/). For now, the data structures _**are not thread-safe**_. Protect them with [Mutexes](https://golang.org/pkg/sync/#Mutex) within concurrent settings.
+This library is a collection of some basic data structures and algorithms in [go](https://golang.org/). For now, the data structures **are not thread-safe**.
 
 # Installation
 
-The only prerequisite for this library is a [basic go installation](https://golang.org/dl/). That said, it will be easiest if you have a _**go workspace**_ set up. For instructions on that, go to [golang.org's Getting Started page](https://golang.org/doc/install).
+To install this library, you need to have:
+* a [_**basic go installation**_](https://golang.org/dl/) and
+* a [_**go workspace**_](https://golang.org/doc/code.html) set up.
 
-Assuming your workspace is set up, fire up your terminal and go there. This should be as easy as typing `cd $GOPATH`. Then, type
+For instructions on how to do both, consult [golang.org's Getting Started page](https://golang.org/doc/install) step-by-step. Assuming you have done that, fire up your terminal and go to your workspace. This should be as easy as typing `cd $GOPATH`. Then, type
 ```
 go get github.com/ZeroXLR/goalgo
 ```
-The go command will automatically fetch this github repo for you. Then, you can use any of its data structures/algorithms via importing. For instance, if you need `staque` (a _stack_ and a _queue_ in one structure), put
+This convenient go command will automatically fetch this library for you. It will even take care of fetching its dependencies.
+
+Once done, you can then use any of this library's data structures/algorithms by importing. For instance, if you need `staque` (a _stack_ and a _queue_ in one structure), just put
 ```go
 import "github.com/ZeroXLR/goalgo/staque"
 ```
