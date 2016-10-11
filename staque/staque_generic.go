@@ -36,7 +36,7 @@ func (stk *GenericStaque) Popstk() (last Generic, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk) / 4 {
 		*stk = append(make([]Generic, 0, cap(*stk) / 2), (*stk)[:ilast]...)
 	} else {
@@ -51,7 +51,7 @@ func (que *GenericStaque) Popque() (first Generic, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que) / 4 {
 		*que = (*que)[1:]
 	} else {

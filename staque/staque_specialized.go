@@ -35,7 +35,7 @@ func (stk *BoolStaque) Popstk() (last bool, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]bool, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -50,7 +50,7 @@ func (que *BoolStaque) Popque() (first bool, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -90,7 +90,7 @@ func (stk *ByteStaque) Popstk() (last byte, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]byte, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -105,7 +105,7 @@ func (que *ByteStaque) Popque() (first byte, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -145,7 +145,7 @@ func (stk *Complex128Staque) Popstk() (last complex128, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]complex128, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -160,7 +160,7 @@ func (que *Complex128Staque) Popque() (first complex128, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -200,7 +200,7 @@ func (stk *Complex64Staque) Popstk() (last complex64, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]complex64, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -215,7 +215,7 @@ func (que *Complex64Staque) Popque() (first complex64, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -255,7 +255,7 @@ func (stk *ErrorStaque) Popstk() (last error, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]error, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -270,7 +270,7 @@ func (que *ErrorStaque) Popque() (first error, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -310,7 +310,7 @@ func (stk *Float32Staque) Popstk() (last float32, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]float32, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -325,7 +325,7 @@ func (que *Float32Staque) Popque() (first float32, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -365,7 +365,7 @@ func (stk *Float64Staque) Popstk() (last float64, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]float64, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -380,7 +380,7 @@ func (que *Float64Staque) Popque() (first float64, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -420,7 +420,7 @@ func (stk *IntStaque) Popstk() (last int, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]int, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -435,7 +435,7 @@ func (que *IntStaque) Popque() (first int, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -475,7 +475,7 @@ func (stk *Int16Staque) Popstk() (last int16, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]int16, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -490,7 +490,7 @@ func (que *Int16Staque) Popque() (first int16, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -530,7 +530,7 @@ func (stk *Int32Staque) Popstk() (last int32, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]int32, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -545,7 +545,7 @@ func (que *Int32Staque) Popque() (first int32, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -585,7 +585,7 @@ func (stk *Int64Staque) Popstk() (last int64, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]int64, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -600,7 +600,7 @@ func (que *Int64Staque) Popque() (first int64, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -640,7 +640,7 @@ func (stk *Int8Staque) Popstk() (last int8, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]int8, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -655,7 +655,7 @@ func (que *Int8Staque) Popque() (first int8, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -695,7 +695,7 @@ func (stk *RuneStaque) Popstk() (last rune, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]rune, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -710,7 +710,7 @@ func (que *RuneStaque) Popque() (first rune, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -750,7 +750,7 @@ func (stk *StringStaque) Popstk() (last string, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]string, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -765,7 +765,7 @@ func (que *StringStaque) Popque() (first string, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -805,7 +805,7 @@ func (stk *UintStaque) Popstk() (last uint, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]uint, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -820,7 +820,7 @@ func (que *UintStaque) Popque() (first uint, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -860,7 +860,7 @@ func (stk *Uint16Staque) Popstk() (last uint16, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]uint16, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -875,7 +875,7 @@ func (que *Uint16Staque) Popque() (first uint16, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -915,7 +915,7 @@ func (stk *Uint32Staque) Popstk() (last uint32, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]uint32, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -930,7 +930,7 @@ func (que *Uint32Staque) Popque() (first uint32, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -970,7 +970,7 @@ func (stk *Uint64Staque) Popstk() (last uint64, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]uint64, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -985,7 +985,7 @@ func (que *Uint64Staque) Popque() (first uint64, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -1025,7 +1025,7 @@ func (stk *Uint8Staque) Popstk() (last uint8, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]uint8, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -1040,7 +1040,7 @@ func (que *Uint8Staque) Popque() (first uint8, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
@@ -1080,7 +1080,7 @@ func (stk *UintptrStaque) Popstk() (last uintptr, err error) {
 		return last, Empty("Cannot Pop() on empty staque")
 	}
 
-	last = (*stk)[ilast] // save last value; it won't be available afterwards
+	last = (*stk)[ilast]
 	if ilast < cap(*stk)/4 {
 		*stk = append(make([]uintptr, 0, cap(*stk)/2), (*stk)[:ilast]...)
 	} else {
@@ -1095,7 +1095,7 @@ func (que *UintptrStaque) Popque() (first uintptr, err error) {
 		return first, Empty("Cannot Pop() on empty staque")
 	}
 
-	first = (*que)[0] // save first value; it won't be available afterwards
+	first = (*que)[0]
 	if len > cap(*que)/4 {
 		*que = (*que)[1:]
 	} else {
