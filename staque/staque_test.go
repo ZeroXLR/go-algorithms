@@ -13,7 +13,7 @@ func TestPush(t *testing.T) {
 	for i := 0; i < len(randvals); i++ {
 		randvals[i] = float64(i)
 	}
-	slc.Push(randvals...)
+	slc = slc.Push(randvals...)
 	/* Stack must be populated by only the pushed values */
 	for i, v := range slc {
 		if v != float64(i) {
@@ -41,7 +41,7 @@ func TestPeek(t *testing.T) {
 	/* Push various values and check both Peeks */
 	vals := [4]Generic{byte(42), '界', "gopher", false}
 	for _, val := range vals {
-		slc.Push(val)
+		slc = slc.Push(val)
 		v, err = slc.Peekstk()
 		if !(v == val && err == nil) {
 			t.Errorf("slc.Peekstk() == %d, %v want %d, %v", v, err, val, nil)
@@ -57,7 +57,7 @@ func TestPop(t *testing.T) {
 	slc := NewGeneric()
 
 	/* Popstking an empty array should throw a non-nil error*/
-	v, err := slc.Popstk()
+	slc, v, err := slc.Popstk()
 	if err == nil || v != nil {
 		t.Errorf("slc.Popstk() == %v, %v, want %v, !%v: Popstking an empty array should throw non-nil error", v, err, nil, nil)
 	}
@@ -68,20 +68,20 @@ func TestPop(t *testing.T) {
 		vals[i] = i
 	}
 
-	slc.Push(vals...)
+	slc = slc.Push(vals...)
 	/* Start Popstking; check return values AND len(slc) */
 	for i := 127; i > -1; i-- {
-		v, err = slc.Popstk()
+		slc, v, err = slc.Popstk()
 		if !(v == i && err == nil && len(slc) == i) {
 			t.Errorf("slc.Popstk() == %d, %v and len(slc) == %d, want %d, %v and %d", v, err, len(slc), i, nil, i)
 			break
 		}
 	}
 
-	slc.Push(vals...)
+	slc = slc.Push(vals...)
 	/* Start Popqueing; check return values AND len(slc) */
 	for i, j := 0, 127; i < 128; i, j = i + 1, j - 1 {
-		v, err = slc.Popque()
+		slc, v, err = slc.Popque()
 		if !(v == i && err == nil && len(slc) == j) {
 			t.Errorf("slc.Popque() == %d, %v and len(slc) == %d, want %d, %v and %d", v, err, len(slc), i, nil, j)
 			break
@@ -92,7 +92,7 @@ func TestPop(t *testing.T) {
 func BenchmarkPush1By1(b *testing.B) {
 	slc := NewGeneric()
 	for i := 0; i < b.N; i++ {
-		slc.Push(i)
+		slc = slc.Push(i)
 	}
 }
 
@@ -101,13 +101,13 @@ func BenchmarkPushAll(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		vals[i] = i
 	}
-	slc.Push(vals...)
+	slc = slc.Push(vals...)
 }
 
 func BenchmarkPush1By1String(b *testing.B) {
 	slc := NewString()
 	for i := 0; i < b.N; i++ {
-		slc.Push("Meow Meow Meow Meow")
+		slc = slc.Push("Meow Meow Meow Meow")
 	}
 }
 
@@ -116,13 +116,13 @@ func BenchmarkPushAllString(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		vals[i] = "Meow Meow Meow Meow"
 	}
-	slc.Push(vals...)
+	slc = slc.Push(vals...)
 }
 
 func BenchmarkPush1By1Int(b *testing.B) {
 	slc := NewInt()
 	for i := 0; i < b.N; i++ {
-		slc.Push(i)
+		slc = slc.Push(i)
 	}
 }
 
@@ -131,5 +131,5 @@ func BenchmarkPushAllInt(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		vals[i] = i
 	}
-	slc.Push(vals...)
+	slc = slc.Push(vals...)
 }
