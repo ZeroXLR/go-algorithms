@@ -5,7 +5,7 @@ type UFcore struct {
 	parent []int
 }
 
-func (uf *UFcore) Count() int {
+func (uf UFcore) Count() int {
 	return uf.setcount
 }
 
@@ -14,17 +14,21 @@ func (eoob ElementOutOfBounds) Error() string {
 	return string(eoob)
 }
 
-func (uf *UFcore) Find(p int) (int, error) {
+func (uf UFcore) Find(p int) (int, error) {
 	if p < 0 || p >= len(uf.parent) {
 		return 0, ElementOutOfBounds("Element is Out of Bounds")
 	}
-	for p != uf.parent[p] {
-		uf.parent[p], p = uf.parent[uf.parent[p]], uf.parent[p]
+	root := p
+	for root != uf.parent[root] {
+		root = uf.parent[root]
 	}
-	return p, nil
+	for p != root {
+		uf.parent[p], p = root, uf.parent[p]
+	}
+	return root, nil
 }
 
-func (uf *UFcore) Connected(p0, p1 int) (bool, error) {
+func (uf UFcore) Connected(p0, p1 int) (bool, error) {
 	root0, err := uf.Find(p0)
 	var root1 int; if err == nil {
 		root1, err = uf.Find(p1)
@@ -32,16 +36,16 @@ func (uf *UFcore) Connected(p0, p1 int) (bool, error) {
 	return err == nil && root0 == root1, err
 }
 
-func Core(n int) *UFcore {
+func Core(n int) UFcore {
 	parent := make([]int, n)
 	for i := 0; i < n; i++ {
 		parent[i] = i
 	}
-	return &UFcore{n, parent}
+	return UFcore{n, parent}
 }
 
 type UFbyrank struct {
-	*UFcore
+	UFcore
 	rank []byte
 }
 
@@ -70,7 +74,7 @@ func (uf *UFbyrank) Union(p0, p1 int) (err error) {
 }
 
 type UFbysize struct {
-	*UFcore
+	UFcore
 	size []int
 }
 
@@ -97,18 +101,18 @@ func (uf *UFbysize) Union(p0, p1 int) (err error) {
 	return
 }
 
-func Byrank(n int) *UFbyrank {
-	return &UFbyrank{Core(n), make([]byte, n)}
+func Byrank(n int) UFbyrank {
+	return UFbyrank{Core(n), make([]byte, n)}
 }
 
-func New(n int) *UFbyrank {
+func New(n int) UFbyrank {
 	return Byrank(n)
 }
 
-func Bysize(n int) *UFbysize {
+func Bysize(n int) UFbysize {
 	size := make([]int, n)
 	for i := 0; i < n; i++ {
 		size[i] = 1
 	}
-	return &UFbysize{Core(n), size}
+	return UFbysize{Core(n), size}
 }
