@@ -18,14 +18,14 @@ func (staque GenericStaque) Push(xs ...Generic) GenericStaque {
 func (stk GenericStaque) Peekstk() (last Generic, isempty error) {
 	ilast := len(stk) - 1
 	if ilast < 0 {
-		return last, Empty("Cannot Peek() on empty staque")
+		return last, &empty{"Cannot Peek() on empty staque"}
 	}
 	return stk[ilast], nil
 }
 
 func (que GenericStaque) Peekque() (first Generic, isempty error) {
 	if len(que) == 0 {
-		return first, Empty("Cannot Peek() on empty staque")
+		return first, &empty{"Cannot Peek() on empty staque"}
 	}
 	return que[0], nil
 }
@@ -33,7 +33,7 @@ func (que GenericStaque) Peekque() (first Generic, isempty error) {
 func (stk GenericStaque) Popstk() (modified GenericStaque, last Generic, isempty error) {
 	ilast := len(stk) - 1
 	if ilast < 0 {
-		return nil, last, Empty("Cannot Pop() on empty staque")
+		return nil, last, &empty{"Cannot Pop() on empty staque"}
 	}
 
 	if ilast < cap(stk) / 4 {
@@ -46,7 +46,7 @@ func (stk GenericStaque) Popstk() (modified GenericStaque, last Generic, isempty
 func (que GenericStaque) Popque() (modified GenericStaque, first Generic, isempty error) {
 	len := len(que)
 	if len == 0 {
-		return nil, first, Empty("Cannot Pop() on empty staque")
+		return nil, first, &empty{"Cannot Pop() on empty staque"}
 	}
 
 	if len > cap(que) / 4 {

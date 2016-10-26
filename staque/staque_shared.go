@@ -1,6 +1,8 @@
 package staque
 
-type Empty string
-func (empty Empty) Error() string {
-	return string(empty)
+type empty struct {
+	s string
+}
+func (e *empty) Error() string {
+	return e.s
 }
