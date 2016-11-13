@@ -1,22 +1,21 @@
 package unionfind
 
-type UFcore struct {
+import "errors"
+
+type ufcore struct {
 	setcount int
 	parent []int
 }
 
-func (uf UFcore) Count() int {
+func (uf ufcore) Count() int {
 	return uf.setcount
 }
 
-type ElementOutOfBounds string
-func (eoob ElementOutOfBounds) Error() string {
-	return string(eoob)
-}
+var eoob = errors.New("Element is Out of Bounds")
 
-func (uf UFcore) Find(p int) (int, error) {
+func (uf ufcore) Find(p int) (int, error) {
 	if p < 0 || p >= len(uf.parent) {
-		return 0, ElementOutOfBounds("Element is Out of Bounds")
+		return 0, eoob
 	}
 	root := p
 	for root != uf.parent[root] {
@@ -28,7 +27,7 @@ func (uf UFcore) Find(p int) (int, error) {
 	return root, nil
 }
 
-func (uf UFcore) Connected(p0, p1 int) (bool, error) {
+func (uf ufcore) Connected(p0, p1 int) (bool, error) {
 	root0, err := uf.Find(p0)
 	var root1 int; if err == nil {
 		root1, err = uf.Find(p1)
@@ -36,20 +35,20 @@ func (uf UFcore) Connected(p0, p1 int) (bool, error) {
 	return err == nil && root0 == root1, err
 }
 
-func Core(n int) UFcore {
+func core(n int) *ufcore {
 	parent := make([]int, n)
 	for i := 0; i < n; i++ {
 		parent[i] = i
 	}
-	return UFcore{n, parent}
+	return &ufcore{n, parent}
 }
 
 type UFbyrank struct {
-	UFcore
+	*ufcore
 	rank []byte
 }
 
-func (uf *UFbyrank) Union(p0, p1 int) (err error) {
+func (uf UFbyrank) Union(p0, p1 int) (err error) {
 	root0, err := uf.Find(p0)
 	if err != nil {
 		return
@@ -74,11 +73,11 @@ func (uf *UFbyrank) Union(p0, p1 int) (err error) {
 }
 
 type UFbysize struct {
-	UFcore
+	*ufcore
 	size []int
 }
 
-func (uf *UFbysize) Union(p0, p1 int) (err error) {
+func (uf UFbysize) Union(p0, p1 int) (err error) {
 	root0, err := uf.Find(p0)
 	if err != nil {
 		return
@@ -102,7 +101,7 @@ func (uf *UFbysize) Union(p0, p1 int) (err error) {
 }
 
 func Byrank(n int) UFbyrank {
-	return UFbyrank{Core(n), make([]byte, n)}
+	return UFbyrank{core(n), make([]byte, n)}
 }
 
 func New(n int) UFbyrank {
@@ -114,5 +113,5 @@ func Bysize(n int) UFbysize {
 	for i := 0; i < n; i++ {
 		size[i] = 1
 	}
-	return UFbysize{Core(n), size}
+	return UFbysize{core(n), size}
 }

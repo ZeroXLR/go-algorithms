@@ -7,7 +7,7 @@ import (
 
 func TestUFcore(t *testing.T) {
 	n := rand.Intn(100)
-	uf := Core(n)
+	uf := core(n)
 
 	if uf.setcount != n {
 		t.Errorf("Initially there should be %d components but got uf.setcount == %d", n, uf.setcount)

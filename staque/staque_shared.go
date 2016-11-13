@@ -1,8 +1,8 @@
 package staque
 
-type empty struct {
-	s string
-}
-func (e *empty) Error() string {
-	return e.s
-}
+import "errors"
+
+var (
+	emptypeek = errors.New("Cannot Peek() on empty staque")
+	emptypop = errors.New("Cannot Pop() on empty staque")
+)
