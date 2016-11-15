@@ -15,27 +15,28 @@ func (staque BoolStaque) Push(xs ...bool) BoolStaque {
 }
 
 func (stk BoolStaque) Peekstk() (last bool, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que BoolStaque) Peekque() (first bool, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk BoolStaque) Popstk() (modified BoolStaque, last bool, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]bool, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -43,12 +44,10 @@ func (stk BoolStaque) Popstk() (modified BoolStaque, last bool, isempty error) {
 }
 
 func (que BoolStaque) Popque() (modified BoolStaque, first bool, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]bool, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -66,27 +65,28 @@ func (staque ByteStaque) Push(xs ...byte) ByteStaque {
 }
 
 func (stk ByteStaque) Peekstk() (last byte, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que ByteStaque) Peekque() (first byte, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk ByteStaque) Popstk() (modified ByteStaque, last byte, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]byte, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -94,12 +94,10 @@ func (stk ByteStaque) Popstk() (modified ByteStaque, last byte, isempty error) {
 }
 
 func (que ByteStaque) Popque() (modified ByteStaque, first byte, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]byte, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -117,27 +115,28 @@ func (staque Complex128Staque) Push(xs ...complex128) Complex128Staque {
 }
 
 func (stk Complex128Staque) Peekstk() (last complex128, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Complex128Staque) Peekque() (first complex128, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Complex128Staque) Popstk() (modified Complex128Staque, last complex128, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]complex128, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -145,12 +144,10 @@ func (stk Complex128Staque) Popstk() (modified Complex128Staque, last complex128
 }
 
 func (que Complex128Staque) Popque() (modified Complex128Staque, first complex128, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]complex128, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -168,27 +165,28 @@ func (staque Complex64Staque) Push(xs ...complex64) Complex64Staque {
 }
 
 func (stk Complex64Staque) Peekstk() (last complex64, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Complex64Staque) Peekque() (first complex64, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Complex64Staque) Popstk() (modified Complex64Staque, last complex64, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]complex64, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -196,12 +194,10 @@ func (stk Complex64Staque) Popstk() (modified Complex64Staque, last complex64, i
 }
 
 func (que Complex64Staque) Popque() (modified Complex64Staque, first complex64, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]complex64, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -219,27 +215,28 @@ func (staque ErrorStaque) Push(xs ...error) ErrorStaque {
 }
 
 func (stk ErrorStaque) Peekstk() (last error, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que ErrorStaque) Peekque() (first error, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk ErrorStaque) Popstk() (modified ErrorStaque, last error, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]error, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -247,12 +244,10 @@ func (stk ErrorStaque) Popstk() (modified ErrorStaque, last error, isempty error
 }
 
 func (que ErrorStaque) Popque() (modified ErrorStaque, first error, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]error, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -270,27 +265,28 @@ func (staque Float32Staque) Push(xs ...float32) Float32Staque {
 }
 
 func (stk Float32Staque) Peekstk() (last float32, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Float32Staque) Peekque() (first float32, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Float32Staque) Popstk() (modified Float32Staque, last float32, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]float32, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -298,12 +294,10 @@ func (stk Float32Staque) Popstk() (modified Float32Staque, last float32, isempty
 }
 
 func (que Float32Staque) Popque() (modified Float32Staque, first float32, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]float32, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -321,27 +315,28 @@ func (staque Float64Staque) Push(xs ...float64) Float64Staque {
 }
 
 func (stk Float64Staque) Peekstk() (last float64, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Float64Staque) Peekque() (first float64, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Float64Staque) Popstk() (modified Float64Staque, last float64, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]float64, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -349,12 +344,10 @@ func (stk Float64Staque) Popstk() (modified Float64Staque, last float64, isempty
 }
 
 func (que Float64Staque) Popque() (modified Float64Staque, first float64, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]float64, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -372,27 +365,28 @@ func (staque IntStaque) Push(xs ...int) IntStaque {
 }
 
 func (stk IntStaque) Peekstk() (last int, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que IntStaque) Peekque() (first int, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk IntStaque) Popstk() (modified IntStaque, last int, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]int, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -400,12 +394,10 @@ func (stk IntStaque) Popstk() (modified IntStaque, last int, isempty error) {
 }
 
 func (que IntStaque) Popque() (modified IntStaque, first int, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]int, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -423,27 +415,28 @@ func (staque Int16Staque) Push(xs ...int16) Int16Staque {
 }
 
 func (stk Int16Staque) Peekstk() (last int16, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Int16Staque) Peekque() (first int16, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Int16Staque) Popstk() (modified Int16Staque, last int16, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]int16, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -451,12 +444,10 @@ func (stk Int16Staque) Popstk() (modified Int16Staque, last int16, isempty error
 }
 
 func (que Int16Staque) Popque() (modified Int16Staque, first int16, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]int16, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -474,27 +465,28 @@ func (staque Int32Staque) Push(xs ...int32) Int32Staque {
 }
 
 func (stk Int32Staque) Peekstk() (last int32, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Int32Staque) Peekque() (first int32, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Int32Staque) Popstk() (modified Int32Staque, last int32, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]int32, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -502,12 +494,10 @@ func (stk Int32Staque) Popstk() (modified Int32Staque, last int32, isempty error
 }
 
 func (que Int32Staque) Popque() (modified Int32Staque, first int32, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]int32, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -525,27 +515,28 @@ func (staque Int64Staque) Push(xs ...int64) Int64Staque {
 }
 
 func (stk Int64Staque) Peekstk() (last int64, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Int64Staque) Peekque() (first int64, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Int64Staque) Popstk() (modified Int64Staque, last int64, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]int64, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -553,12 +544,10 @@ func (stk Int64Staque) Popstk() (modified Int64Staque, last int64, isempty error
 }
 
 func (que Int64Staque) Popque() (modified Int64Staque, first int64, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]int64, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -576,27 +565,28 @@ func (staque Int8Staque) Push(xs ...int8) Int8Staque {
 }
 
 func (stk Int8Staque) Peekstk() (last int8, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Int8Staque) Peekque() (first int8, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Int8Staque) Popstk() (modified Int8Staque, last int8, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]int8, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -604,12 +594,10 @@ func (stk Int8Staque) Popstk() (modified Int8Staque, last int8, isempty error) {
 }
 
 func (que Int8Staque) Popque() (modified Int8Staque, first int8, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]int8, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -627,27 +615,28 @@ func (staque RuneStaque) Push(xs ...rune) RuneStaque {
 }
 
 func (stk RuneStaque) Peekstk() (last rune, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que RuneStaque) Peekque() (first rune, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk RuneStaque) Popstk() (modified RuneStaque, last rune, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]rune, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -655,12 +644,10 @@ func (stk RuneStaque) Popstk() (modified RuneStaque, last rune, isempty error) {
 }
 
 func (que RuneStaque) Popque() (modified RuneStaque, first rune, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]rune, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -678,27 +665,28 @@ func (staque StringStaque) Push(xs ...string) StringStaque {
 }
 
 func (stk StringStaque) Peekstk() (last string, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que StringStaque) Peekque() (first string, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk StringStaque) Popstk() (modified StringStaque, last string, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]string, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -706,12 +694,10 @@ func (stk StringStaque) Popstk() (modified StringStaque, last string, isempty er
 }
 
 func (que StringStaque) Popque() (modified StringStaque, first string, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]string, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -729,27 +715,28 @@ func (staque UintStaque) Push(xs ...uint) UintStaque {
 }
 
 func (stk UintStaque) Peekstk() (last uint, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que UintStaque) Peekque() (first uint, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk UintStaque) Popstk() (modified UintStaque, last uint, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]uint, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -757,12 +744,10 @@ func (stk UintStaque) Popstk() (modified UintStaque, last uint, isempty error) {
 }
 
 func (que UintStaque) Popque() (modified UintStaque, first uint, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]uint, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -780,27 +765,28 @@ func (staque Uint16Staque) Push(xs ...uint16) Uint16Staque {
 }
 
 func (stk Uint16Staque) Peekstk() (last uint16, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Uint16Staque) Peekque() (first uint16, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Uint16Staque) Popstk() (modified Uint16Staque, last uint16, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]uint16, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -808,12 +794,10 @@ func (stk Uint16Staque) Popstk() (modified Uint16Staque, last uint16, isempty er
 }
 
 func (que Uint16Staque) Popque() (modified Uint16Staque, first uint16, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]uint16, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -831,27 +815,28 @@ func (staque Uint32Staque) Push(xs ...uint32) Uint32Staque {
 }
 
 func (stk Uint32Staque) Peekstk() (last uint32, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Uint32Staque) Peekque() (first uint32, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Uint32Staque) Popstk() (modified Uint32Staque, last uint32, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]uint32, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -859,12 +844,10 @@ func (stk Uint32Staque) Popstk() (modified Uint32Staque, last uint32, isempty er
 }
 
 func (que Uint32Staque) Popque() (modified Uint32Staque, first uint32, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]uint32, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -882,27 +865,28 @@ func (staque Uint64Staque) Push(xs ...uint64) Uint64Staque {
 }
 
 func (stk Uint64Staque) Peekstk() (last uint64, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Uint64Staque) Peekque() (first uint64, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Uint64Staque) Popstk() (modified Uint64Staque, last uint64, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]uint64, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -910,12 +894,10 @@ func (stk Uint64Staque) Popstk() (modified Uint64Staque, last uint64, isempty er
 }
 
 func (que Uint64Staque) Popque() (modified Uint64Staque, first uint64, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]uint64, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -933,27 +915,28 @@ func (staque Uint8Staque) Push(xs ...uint8) Uint8Staque {
 }
 
 func (stk Uint8Staque) Peekstk() (last uint8, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que Uint8Staque) Peekque() (first uint8, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk Uint8Staque) Popstk() (modified Uint8Staque, last uint8, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]uint8, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -961,12 +944,10 @@ func (stk Uint8Staque) Popstk() (modified Uint8Staque, last uint8, isempty error
 }
 
 func (que Uint8Staque) Popque() (modified Uint8Staque, first uint8, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]uint8, 0, cap(que)/2), que[1:]...), que[0], nil
@@ -984,27 +965,28 @@ func (staque UintptrStaque) Push(xs ...uintptr) UintptrStaque {
 }
 
 func (stk UintptrStaque) Peekstk() (last uintptr, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return last, emptypeek
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypeek
+	} else {
+		last = stk[ilast]
 	}
-	return stk[ilast], nil
+	return
 }
 
 func (que UintptrStaque) Peekque() (first uintptr, isempty error) {
 	if len(que) == 0 {
-		return first, emptypeek
+		isempty = emptypeek
+	} else {
+		first = que[0]
 	}
-	return que[0], nil
+	return
 }
 
 func (stk UintptrStaque) Popstk() (modified UintptrStaque, last uintptr, isempty error) {
-	ilast := len(stk) - 1
-	if ilast < 0 {
-		return nil, last, emptypop
-	}
-
-	if ilast < cap(stk)/4 {
+	if ilast := len(stk) - 1; ilast < 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for last; so, we need named returns to set default values for last
+	} else if ilast < cap(stk)/4 {
 		return append(make([]uintptr, 0, cap(stk)/2), stk[:ilast]...), stk[ilast], nil
 	} else {
 		return stk[:ilast], stk[ilast], nil
@@ -1012,12 +994,10 @@ func (stk UintptrStaque) Popstk() (modified UintptrStaque, last uintptr, isempty
 }
 
 func (que UintptrStaque) Popque() (modified UintptrStaque, first uintptr, isempty error) {
-	len := len(que)
-	if len == 0 {
-		return nil, first, emptypop
-	}
-
-	if len > cap(que)/4 {
+	if len(que) == 0 {
+		isempty = emptypop // as this generic function will become multi-typed, we have many possible
+		return             // zero values for first; so, we need named returns to set default values for first
+	} else if len(que) > cap(que)/4 {
 		return que[1:], que[0], nil
 	} else {
 		return append(make([]uintptr, 0, cap(que)/2), que[1:]...), que[0], nil
